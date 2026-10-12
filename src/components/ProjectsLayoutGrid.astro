@@ -1,4 +1,7 @@
 ---
+import { getLocale, ui } from "../utils/i18n";
+const locale = getLocale(Astro.url);
+const t = ui[locale];
 /**
  * ProjectsLayoutGrid — Default layout
  * Renders projects grouped by category as stacked sections with card grids.
@@ -46,10 +49,10 @@ const { categoryGroups, uncategorizedProjects } = Astro.props;
     <section>
       <div class="mb-6">
         <h2 class="text-3xl font-bold">
-          <span class="mr-2">📁</span>Other
+          <span class="mr-2">📁</span>{t.other}
         </h2>
         <p class="text-base-content/60 mt-1">
-          Projects not assigned to a category.
+          {t.otherDesc}
         </p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

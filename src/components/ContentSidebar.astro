@@ -1,4 +1,7 @@
 ---
+import { getLocale, ui } from "../utils/i18n";
+const locale = getLocale(Astro.url);
+const t = ui[locale];
 import type { MarkdownHeading } from "astro";
 import type { ContentSidebarPosition } from "../utils/contentSidebar";
 import { ChevronDown, ListTree } from "@lucide/astro";
@@ -19,7 +22,7 @@ const { headings, position } = Astro.props;
     >
       <span class="flex items-center gap-2">
         <ListTree class="size-4" aria-hidden="true" />
-        On this page
+        {t.pageOutline}
       </span>
       <ChevronDown
         class="content-sidebar-chevron size-4 transition-transform duration-200"
@@ -27,7 +30,7 @@ const { headings, position } = Astro.props;
       />
     </summary>
     <nav
-      aria-label="On this page"
+      aria-label={t.pageOutline}
       class="content-sidebar-scroll mt-3 max-h-72 overflow-y-auto overscroll-contain"
     >
       <ContentSidebarList
@@ -48,9 +51,9 @@ const { headings, position } = Astro.props;
   >
     <div class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-base-content/50">
       <ListTree class="size-4" aria-hidden="true" />
-      On this page
+      {t.pageOutline}
     </div>
-    <nav aria-label="On this page">
+    <nav aria-label={t.pageOutline}>
       <ContentSidebarList
         headings={headings}
         idPrefix="content-sidebar-desktop"

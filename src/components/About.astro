@@ -1,4 +1,7 @@
 ---
+import { getLocale, ui } from "../utils/i18n";
+const locale = getLocale(Astro.url);
+const t = ui[locale];
 import { Plus } from "@lucide/astro";
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
@@ -37,7 +40,7 @@ const { title, photo, Content, link } = Astro.props;
         {
           link && (
             <div class="card-actions justify-end">
-              <div class="tooltip" data-tip="More about me">
+              <div class="tooltip" data-tip={t.aboutMore}>
                 <a href={link} target="_blank" class="btn btn-primary">
                   <Plus class="size-5" />
                 </a>

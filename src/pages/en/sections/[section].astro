@@ -1,0 +1,7 @@
+---
+export function getStaticPaths() {
+  return ["about", "work", "education", "contact"].map(section => ({ params: { section }, props: {} }));
+}
+import Section from "../../sections/[section].astro";
+---
+<Section />

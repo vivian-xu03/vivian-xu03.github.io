@@ -1,11 +1,13 @@
 ---
+import {getLocale,ui,localPath} from "../utils/i18n";
+const locale=getLocale(Astro.url),t=ui[locale];
 import Layout from "../layouts/Layout.astro";
 import { House, FolderOpen } from "@lucide/astro";
 ---
 
 <Layout
-  title="404 - Page Not Found | Bloomfolio"
-  description="The page you're looking for doesn't exist."
+  title={`404 - ${t.missing} | ${t.name}`}
+  description={t.missing}
 >
   <div class="min-h-screen flex items-center justify-center px-4 py-20">
     <div class="text-center max-w-2xl mx-auto">
@@ -13,12 +15,11 @@ import { House, FolderOpen } from "@lucide/astro";
       <h1 class="text-9xl font-bold text-primary mb-4 animate-pulse">404</h1>
 
       <!-- Error Title -->
-      <h2 class="text-4xl font-bold mb-4">🥀 Page Not Found</h2>
+      <h2 class="text-4xl font-bold mb-4">🥀 {t.missing}</h2>
 
       <!-- Error Description -->
       <p class="text-xl mb-8 text-base-content/70">
-        Oops! The page you're looking for doesn't exist or has been moved. Let's
-        get you back on track.
+        {locale === "zh" ? "这个页面不存在或已被移动，你可以返回首页继续浏览。" : "The page you are looking for does not exist or has been moved. Let’s get you back on track."}
       </p>
 
       <!-- Divider -->
@@ -26,29 +27,29 @@ import { House, FolderOpen } from "@lucide/astro";
 
       <!-- Action Buttons -->
       <div class="flex gap-4 justify-center flex-wrap mt-8">
-        <a href="/" class="btn btn-primary gap-2">
+        <a href={localPath("/",locale)} class="btn btn-primary gap-2">
           <House class="size-5" />
-          Go Home
+          {t.backHome}
         </a>
-        <a href="/#projects" class="btn btn-outline gap-2">
+        <a href={localPath("/#projects",locale)} class="btn btn-outline gap-2">
           <FolderOpen class="size-5" />
-          View Projects
+          {t.projects}
         </a>
       </div>
 
       <!-- Helpful Links -->
       <div class="flex justify-center gap-2 mt-12">
         <p class="text-sm text-base-content/60 mb-4">
-          You might be looking for:
+          {locale === "zh" ? "你可能想查看：" : "You might be looking for:"}
         </p>
         <div class="flex gap-3 justify-center flex-wrap text-sm">
-          <a href="/blog" class="link link-hover">Blog</a>
+          <a href={localPath("/projects",locale)} class="link link-hover">{t.projects}</a>
           <span class="text-base-content/30">•</span>
-          <a href="/#about" class="link link-hover">About</a>
+          <a href={localPath("/sections/about",locale)} class="link link-hover">{t.about}</a>
           <span class="text-base-content/30">•</span>
           <a
-            href="/blog/guides/bloomfolio-complete-guide-building-your-portfolio"
-            class="link link-hover">Documentation</a
+            href={localPath("/sections/contact",locale)}
+            class="link link-hover">{t.contact}</a
           >
         </div>
       </div>

@@ -1,29 +1,13 @@
-projectsLayout: tabs-horizontal
+projectsLayout: "tabs-horizontal"
 showContentSidebar: true
-contentSidebarPosition: right
+contentSidebarPosition: "right"
 enableThemeSelector: true
 extraLinksEnabled: true
-extraLinks:
-  - link: /blog/guides/bloomfolio-complete-guide-building-your-portfolio
-    icon: Flower2
-    label: Bloomfolio Guide
-    displayOn: both
-  - link: /blog/guides/content-collections-guide
-    icon: BookOpen
-    label: Content Guide
-    displayOn: both
-  - link: /blog/guides/markdown-guide
-    icon: FileText
-    label: Markdown Guide
-    displayOn: both
-  - link: https://github.com/lauroguedes/bloomfolio
-    icon: CodeXml
-    label: GitHub Repo
-    displayOn: both
+extraLinks: [{"link": "/", "icon": "Home", "label": "首页", "displayOn": "both"}, {"link": "/#about", "icon": "User", "label": "关于我", "displayOn": "both"}, {"link": "/projects", "icon": "Briefcase", "label": "项目", "displayOn": "both"}, {"link": "/#work", "icon": "Briefcase", "label": "实习经历", "displayOn": "both"}, {"link": "/#education", "icon": "GraduationCap", "label": "教育背景", "displayOn": "both"}, {"link": "/#contact", "icon": "Mail", "label": "联系我", "displayOn": "both"}]
 showAboutSection: true
 showProjectsSection: true
-showBlogSection: true
+showBlogSection: false
 showWorkSection: true
 showEducationSection: true
-showHackathonsSection: true
+showHackathonsSection: false
 showContactSection: true

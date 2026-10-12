@@ -1,8 +1,19 @@
 ---
-title: About Me
-photo: '@assets/about/photo.png'
-link: https://linkedin.com/in/lauroguedes
+title: "关于我"
+photo: "@assets/about/jiawei-xu.png"
 ---
-My toolkit revolves around the **Laravel and Vue JS** ecosystem. I enjoy crafting everything from robust APIs and full-stack applications to open-source tools like the [Mary UI Laravel Starter Kit](https://github.com/lauroguedes/mary-ui-starter-kit) and [Bloomfolio](https://github.com/lauroguedes/bloomfolio), an Astro portfolio template that's been forked dozens of times.
+我的学习背景涵盖传媒英语与创业管理，实践经历横跨奢美品牌、整合营销与公共传播。在海蓝之谜、Gucci Beauty、阳狮集团、苏州广电和未来教育研究院的实习中，我参与了消费者洞察、新品上市、销售分析与内容传播。
 
-When I'm not coding, I'm probably exploring AI art, traveling, or listening to 🎸 heavy music way too loud.
+我喜欢把消费者需求转化为内容方向，再用数据优化策略。我曾担任欧莱雅 Brandstorm PRINTEMPS 头皮护理项目负责人，以及西交利物浦大学正念中心策展人兼社长，带领 20 人团队策划面向 350+ 参与者的四天活动；也曾领导英语话剧社并参与校园职业发展宣传。
+
+**语言**
+
+普通话（母语）· 本科四年全英文教学 · 雅思 7.0
+
+**技能**
+
+消费者洞察 · 品牌策略 · 整合营销 · SQL · Python · MS Office / PowerPoint / Excel · 秀米 · Canva · 微信公众号运营 · 剪映
+
+**兴趣**
+
+网球 · 游泳 · 羽毛球（校队成员）· 普拉提 · 瑜伽 · 钢琴十级 · 芭蕾 · 艺术展览

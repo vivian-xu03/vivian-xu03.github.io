@@ -1,4 +1,7 @@
 ---
+import { getLocale, ui, contentId } from "../utils/i18n";
+const locale = getLocale(Astro.url);
+const t = ui[locale];
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
@@ -11,13 +14,13 @@ import { Briefcase, GraduationCap } from "@lucide/astro";
 import { getEntry, render } from "astro:content";
 
 // Load Hero singleton
-const heroEntry = await getEntry("hero", "index");
+const heroEntry = await getEntry("hero", contentId("index", locale));
 if (!heroEntry) {
   throw new Error('Missing required content entry: "hero/index"');
 }
 
 // Load About singleton
-const aboutEntry = await getEntry("about", "index");
+const aboutEntry = await getEntry("about", contentId("index", locale));
 if (!aboutEntry) {
   throw new Error('Missing required content entry: "about/index"');
 }
@@ -34,7 +37,7 @@ const general = generalEntry.data;
 ---
 
 <Layout
-  title={`${heroEntry.data.name} - Portfolio`}
+  title={`${heroEntry.data.name} - ${t.portfolio}`}
   description={heroEntry.data.description}
 >
   <main>
@@ -69,7 +72,7 @@ const general = generalEntry.data;
             variant="timeline"
             color="primary"
             icon={Briefcase}
-            sectionTitle="Work Experience"
+            sectionTitle={t.work}
           />
         )
       }
@@ -83,7 +86,7 @@ const general = generalEntry.data;
             color="secondary"
             backgroundColor="base-300"
             icon={GraduationCap}
-            sectionTitle="Education"
+            sectionTitle={t.education}
           />
         )
       }

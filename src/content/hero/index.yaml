@@ -1,35 +1,5 @@
-name: 🌻 Bloomfolio
-title: >-
-  Astro Portfolio Template built with [link:https://daisyui.com]🌼
-  DaisyUI[/link]
-description: >-
-  A modern, responsive, and customizable portfolio template built with
-  [link:https://astro.build/]Astro[/link]  and DaisyUI. Perfect for developers,
-  designers, and creatives to showcase their work and skills.
-avatar: '@assets/hero/avatar.png'
-location: 🇧🇷 Brazil
-socialLinks:
-  - url: mailto:hello@example.com
-    icon: Email
-    label: Email
-  - url: https://github.com/lauroguedes
-    icon: GitHub
-    label: GitHub
-  - url: https://linkedin.com/in/lauroguedes
-    icon: LinkedIn
-    label: LinkedIn
-  - url: https://twitter.com/leowg
-    icon: Twitter
-    label: X (Twitter)
-  - url: https://bsky.app/profile/lauroguedes.bsky.social
-    icon: Bluesky
-    label: Bluesky
-  - url: https://instagram.com/lauroguedes.dev
-    icon: Instagram
-    label: Instagram
-  - url: https://youtube.com/leowgweb
-    icon: YouTube
-    label: YouTube
-  - url: https://codetips.cloud/u/lauroguedes
-    icon: FolderCode
-    label: CodeTips
+name: "徐嘉蔚"
+title: "品牌营销 · 消费者洞察 · 整合营销"
+description: "你好，我是徐嘉蔚。我关注消费者洞察、品牌策略与整合营销，喜欢用数据理解人，再用创意连接人与品牌。"
+avatar: "@assets/hero/jiawei-xu.png"
+socialLinks: [{"url": "mailto:j1029382023@163.com", "icon": "Email", "label": "邮箱"}]

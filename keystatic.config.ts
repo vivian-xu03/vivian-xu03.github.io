@@ -37,7 +37,7 @@ const contentSidebarOverrideField = () =>
     }
   );
 
-export default config({
+const originalConfig = config({
   storage: import.meta.env.PUBLIC_KEYSTATIC_GITHUB_APP_SLUG
     ? {
         kind: "github",
@@ -671,4 +671,22 @@ export default config({
       },
     }),
   },
+});
+
+// Both languages use the same original editor fields and asset controls.
+export default config({
+ ...originalConfig,
+ singletons: {
+  ...originalConfig.singletons,
+  heroEnglish: {...originalConfig.singletons.hero, label: "Hero Section (English)", path: "src/content/hero/en/"},
+  aboutEnglish: {...originalConfig.singletons.about, label: "About (English)", path: "src/content/about/en/"},
+  contactEnglish: {...originalConfig.singletons.contact, label: "Contact (English)", path: "src/content/contact/en/"},
+ },
+ collections: {
+  ...originalConfig.collections,
+  workEnglish: {...originalConfig.collections.work, label: "Work Experience (English)", path: "src/content/work/en/*"},
+  educationEnglish: {...originalConfig.collections.education, label: "Education (English)", path: "src/content/education/en/*"},
+  projectsEnglish: {...originalConfig.collections.projects, label: "Projects (English)", path: "src/content/projects/en/*"},
+  categoriesEnglish: {...originalConfig.collections.projectCategories, label: "Project Categories (English)", path: "src/content/projectCategories/en/*"},
+ }
 });

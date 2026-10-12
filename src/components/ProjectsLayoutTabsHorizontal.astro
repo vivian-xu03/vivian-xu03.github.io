@@ -1,4 +1,7 @@
 ---
+import { getLocale, ui } from "../utils/i18n";
+const locale = getLocale(Astro.url);
+const t = ui[locale];
 /**
  * ProjectsLayoutTabsHorizontal
  * Renders projects using DaisyUI tabs-border with horizontal tabs at the top.
@@ -31,8 +34,8 @@ const allProjects = [
 const allTabs = [
   {
     slug: "_all",
-    title: "All",
-    description: "Browse every project in one place.",
+    title: t.all,
+    description: t.allDesc,
     icon: "✨",
     projects: allProjects,
   },
@@ -41,8 +44,8 @@ const allTabs = [
     ? [
         {
           slug: "_other",
-          title: "Other",
-          description: "Projects not assigned to a category.",
+          title: t.other,
+          description: t.otherDesc,
           icon: "📁",
           projects: uncategorizedProjects,
         },

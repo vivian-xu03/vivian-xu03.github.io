@@ -1,0 +1,17 @@
+---
+import { getLocale, ui } from '../utils/i18n';
+const locale=getLocale(Astro.url);
+const path=Astro.url.pathname;
+const target=locale==='en' ? path.replace(/^\/en(?=\/|$)/,'') || '/' : `/en${path}`;
+---
+<a href={target} class="btn btn-ghost btn-sm gap-1" aria-label={ui[locale].switch} data-language-switch>
+ <span class:list={{'font-bold text-primary':locale==='zh'}}>中文</span><span aria-hidden="true">/</span><span class:list={{'font-bold text-primary':locale==='en'}}>EN</span>
+</a>
+<script>
+ document.addEventListener('click',(event)=>{
+  const link=event.target instanceof Element ? event.target.closest('[data-language-switch]') : null;
+  if(link instanceof HTMLAnchorElement){
+   const url=new URL(link.href);url.hash=location.hash;link.href=url.href;
+  }
+ });
+</script>

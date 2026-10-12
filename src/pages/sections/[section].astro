@@ -1,0 +1,25 @@
+---
+export function getStaticPaths() {
+  return ["about", "work", "education", "contact"].map(section => ({ params: { section }, props: {} }));
+}
+import Layout from '../../layouts/Layout.astro';
+import About from '../../components/About.astro';
+import Timeline from '../../components/Timeline.astro';
+import Contact from '../../components/Contact.astro';
+import { getEntry, render } from 'astro:content';
+import { Briefcase, GraduationCap } from '@lucide/astro';
+import {getLocale,ui,contentId,localPath} from '../../utils/i18n';
+const locale=getLocale(Astro.url),t=ui[locale],section=Astro.params.section;
+if(!['about','work','education','contact'].includes(section || '')) return Astro.redirect(localPath('/404',locale));
+const entry=await getEntry('about',contentId('index',locale));
+if(!entry) return Astro.redirect(localPath('/404',locale));
+const {Content}=await render(entry);
+---
+<Layout title={`${t[section as 'about'|'work'|'education'|'contact']} - ${t.name}`}>
+ <main><div class="max-w-4xl mx-auto px-4 pt-20"><a class="btn btn-ghost btn-sm" href={localPath('/',locale)}>← {t.backHome}</a></div>
+ {section==='about' && <About title={entry.data.title} photo={entry.data.photo} Content={Content} link={entry.data.link} />}
+ {section==='work' && <Timeline collection="work" variant="timeline" color="primary" icon={Briefcase} sectionTitle={t.work} />}
+ {section==='education' && <Timeline collection="education" variant="list" color="secondary" backgroundColor="base-300" icon={GraduationCap} sectionTitle={t.education} />}
+ {section==='contact' && <div class="pt-20"><Contact /></div>}
+ </main>
+</Layout>

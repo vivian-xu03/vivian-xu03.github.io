@@ -1,4 +1,11 @@
 ---
+import { getCollection } from "astro:content";
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.filter(entry => !entry.id.startsWith("en/")).map(entry => ({ params: { slug: entry.id.replace(/^en\//, "") }, props: {} }));
+}
+import { getLocale, localPath, contentId } from "../../utils/i18n";
+const locale = getLocale(Astro.url);
 import { getEntry, render } from "astro:content";
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
 import { resolveContentSidebar } from "../../utils/contentSidebar";
@@ -7,11 +14,11 @@ import { resolveContentSidebar } from "../../utils/contentSidebar";
 const { slug } = Astro.params;
 
 // Handle the slug
-const entry = await getEntry("projects", slug as string);
+const entry = await getEntry("projects",contentId(slug as string,locale));
 
 // If entry doesn't exist, return 404
 if (!entry) {
-  return Astro.redirect("/404");
+  return Astro.redirect(localPath("/404",locale));
 }
 
 const { Content, headings } = await render(entry);

@@ -1,18 +1,21 @@
 ---
+import { getLocale, ui } from "../utils/i18n";
+const locale = getLocale(Astro.url);
+const t = ui[locale];
 import { Palette } from "@lucide/astro";
 
 const themes = [
-  { value: "light", label: "Light" },
-  { value: "dark", label: "Dark" },
-  { value: "synthwave", label: "Synthwave" },
-  { value: "retro", label: "Retro" },
-  { value: "valentine", label: "Valentine" },
-  { value: "dim", label: "Dim" },
+  { value: "light", label: t.light },
+  { value: "dark", label: t.dark },
+  { value: "synthwave", label: t.synthwave },
+  { value: "retro", label: t.retro },
+  { value: "valentine", label: t.valentine },
+  { value: "dim", label: t.dim },
 ];
 ---
 
 <div class="dropdown dropdown-end">
-  <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+  <div tabindex="0" role="button" class="btn btn-ghost btn-circle" aria-label={t.theme}>
     <Palette class="w-5 h-5" />
   </div>
   <ul
@@ -40,7 +43,9 @@ const themes = [
 <script is:inline>
   // Set theme on page load based on localStorage or system preference
   function setTheme() {
-    const savedTheme = localStorage.getItem("theme");
+    let savedTheme;
+    try { savedTheme = localStorage.getItem("theme"); } catch {}
+    if (!["light","dark","synthwave","retro","valentine","dim"].includes(savedTheme)) savedTheme = null;
     let theme = savedTheme;
 
     // If no saved theme, use system preference
@@ -66,7 +71,7 @@ const themes = [
     if (target.type === "radio" && target.name === "theme") {
       const theme = target.value;
       document.documentElement.setAttribute("data-theme", theme);
-      localStorage.setItem("theme", theme);
+      try { localStorage.setItem("theme", theme); } catch {}
     }
   });
 

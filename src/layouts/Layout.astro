@@ -1,5 +1,9 @@
 ---
+import { getLocale, ui, localPath } from "../utils/i18n";
+const locale = getLocale(Astro.url);
+const t = ui[locale];
 import "../styles/global.css";
+import LanguageSwitch from "../components/LanguageSwitch.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
 import ThemeSelector from "../components/ThemeSelector.astro";
 import FabFlower from "../components/FabFlower.astro";
@@ -21,8 +25,8 @@ interface Props {
 }
 
 const {
-  title = "Bloomfolio Template",
-  description = "A modern portfolio template built with Astro and DaisyUI",
+  title = `${t.name} - ${t.portfolio}`,
+  description = locale === "zh" ? "徐嘉蔚的品牌营销与项目主页" : "Jiawei Xu’s brand marketing portfolio",
 } = Astro.props;
 
 // Custom blur-fade animation configuration
@@ -46,11 +50,11 @@ const pageTransition = {
   backwards: blurFadeAnimation,
 };
 
-const origin = Astro.url.origin;
+const origin = Astro.site?.origin || Astro.url.origin;
 ---
 
 <!doctype html>
-<html lang="en" transition:animate={pageTransition}>
+<html lang={locale === "zh" ? "zh-CN" : "en"} transition:animate={pageTransition}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -67,17 +71,18 @@ const origin = Astro.url.origin;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={origin} />
-    <meta property="og:image" content={`${origin}/images/og_home.png`} />
+    <meta property="og:image" content={`${origin}/images/jiawei-xu.png`} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${origin}/images/og_home.png`} />
+    <meta name="twitter:image" content={`${origin}/images/jiawei-xu.png`} />
   </head>
   <body class="min-h-screen">
     <!-- Theme Controls - Fixed Position -->
-    <div class="fixed top-4 right-4 z-50">
+    <div class="fixed top-4 right-4 z-50 flex items-center gap-1">
+      <LanguageSwitch />
       {general.enableThemeSelector ? <ThemeSelector /> : <ThemeToggle />}
     </div>
 
@@ -88,13 +93,13 @@ const origin = Astro.url.origin;
         <>
           {/* FabFlower for desktop - show 'both' and 'fab' items */}
           <FabFlower
-            extraLinks={general.extraLinks.filter(
+            extraLinks={general.extraLinks.map((link) => ({...link, link: localPath(link.link, locale), label: ({"首页":t.home,"关于我":t.about,"项目":t.projects,"实习经历":t.work,"教育背景":t.education,"联系我":t.contact} as Record<string,string>)[link.label] ?? link.label})).filter(
               (link) => link.displayOn !== "dock"
             )}
           />
           {/* Dock for mobile - show 'both' and 'dock' items */}
           <Dock
-            extraLinks={general.extraLinks.filter(
+            extraLinks={general.extraLinks.map((link) => ({...link, link: localPath(link.link, locale), label: ({"首页":t.home,"关于我":t.about,"项目":t.projects,"实习经历":t.work,"教育背景":t.education,"联系我":t.contact} as Record<string,string>)[link.label] ?? link.label})).filter(
               (link) => link.displayOn !== "fab"
             )}
           />
